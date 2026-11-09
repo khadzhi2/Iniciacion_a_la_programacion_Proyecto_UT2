@@ -1,1 +1,3 @@
-﻿Console.WriteLine("Hello, World!");
+﻿int numeroPrueba = 55;
+
+Console.WriteLine(numeroPrueba);
