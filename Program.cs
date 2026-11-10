@@ -2,12 +2,25 @@
 //Alpine&Run: 
 // -------------------------------
 
-using System.ComponentModel;
-
 int ventasHoy = 0;
 int inventarioNuevo = 0;
 decimal dineroGanado = 0;
 decimal dineroGastado = 0;
+int paresVendidos = 0;
+
+//Stock de tienda
+int stockVomeroPlus = 23;
+int stockMaxfly2 = 12;
+int stockAirForce1 = 34;
+int stockAdizeroEvoSl = 15;
+int stockPrimeSp4 = 6;
+int stockCampus = 44;
+int stockFuelcellRebelV5 = 33;
+int stockSuperCompPwrX = 3;
+int stockutility1906 = 28;
+
+double descuentoGrande = 0.20;
+double descuentoPequeno = 0.10;
 
 int opcionPrincipal = 0;
 
@@ -22,19 +35,21 @@ do
     Console.WriteLine("1. Cobrar una compra");
     Console.WriteLine("2. Consultar inventario");
     Console.WriteLine("3. Consultar ventas del dia");
+    Console.WriteLine("4. Reponer inventario");
     Console.WriteLine("0. Salir");
     Console.Write("Selecciona una opción: ");
     opcionPrincipal = int.Parse(Console.ReadLine()!);
 
     if (opcionPrincipal == 1)
     {
-        //Cobrar persona
+        //Cobrar compra
 
         Console.WriteLine();
         Console.WriteLine("--- Cobrar Compra ---");
 
         string nombreCliente;
-
+        //Guardar nombre del cliente
+        //utilizo trim para quitar los espacios en blanco y de esa manera al comprobar si no se ha escrito nada o solo espacios en blanco se volveria a pedir de nuevo el nombre
         do
         {
             Console.Write("Nombre del cliente: ");
@@ -72,15 +87,14 @@ do
         {
             marcaZapatillas = "Nike";
             Console.WriteLine("Marca Nike seleccionada");
-            Console.WriteLine();
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("--- Elija el Modelo de las Zapatillas Nike deseada ---");
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas Nike deseado ---");
                 Console.WriteLine("1. Vomero Plus (180€)");
                 Console.WriteLine("2. Maxfly 2 (220€)");
                 Console.WriteLine("3. AirForce 1 (120€)");
-                Console.Write("Seleccione una marca: ");
+                Console.Write("Seleccione un modelo: ");
                 opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
 
                 if (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3)
@@ -110,11 +124,11 @@ do
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("--- Elija el Modelo de las Zapatillas Adidas deseada ---");
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas Adidas deseado ---");
                 Console.WriteLine("1. Adizero EVO SL (180€)");
                 Console.WriteLine("2. Prime SP 4 (220€)");
                 Console.WriteLine("3. Campus (120€)");
-                Console.Write("Seleccione una marca: ");
+                Console.Write("Seleccione un modelo: ");
                 opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
 
                 if (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3)
@@ -123,7 +137,7 @@ do
                 }
             } while (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3);
 
-            if (opcionModeloZapatillas == 2)
+            if (opcionModeloZapatillas == 1)
             {
                 modeloZapatillas = "Adizero EVO SL";
                 Console.WriteLine("Adidas Adizero EVO SL seleccionadas");
@@ -145,10 +159,10 @@ do
             {
                 Console.WriteLine();
                 Console.WriteLine("--- Elija el Modelo de las Zapatillas NewBalance deseada ---");
-                Console.WriteLine("1. Fuelcell Rebel V5");
-                Console.WriteLine("2. FuelCell SuperComp PWR-X v3");
-                Console.WriteLine("3. 1906 utility");
-                Console.Write("Seleccione una marca: ");
+                Console.WriteLine("1. Fuelcell Rebel V5 (120€)");
+                Console.WriteLine("2. FuelCell SuperComp PWR-X v3 (170€)");
+                Console.WriteLine("3. 1906 utility (120€)");
+                Console.Write("Seleccione un modelo: ");
                 opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
 
                 if (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3)
@@ -170,6 +184,83 @@ do
                 modeloZapatillas = "1906 utility";
                 Console.WriteLine("NewBalance 1906 utility seleccionadas");
             }
+        }
+        //aqui he buscado una sugerencia de como numerar todos los productos juntos para asi no tener que hacer la logica para las 3 marcas
+        int codigoModelo = (opcionMarcaZapatillas - 1) * 3 + opcionModeloZapatillas;
+        double precioPar = 0;
+        int stockDisponible = 0;
+
+        //aqui asigno los precios a los modelos individuales en vez de hacerlo multiples veces
+        if (codigoModelo == 1)
+        {
+            precioPar = 180;
+            stockDisponible = stockVomeroPlus;
+        }else if (codigoModelo == 2)
+        {
+            precioPar = 220;
+            stockDisponible = stockMaxfly2;
+        }else if (codigoModelo == 3)
+        {
+            precioPar = 120;
+            stockDisponible = stockAirForce1;
+        }else if (codigoModelo == 4)
+        {
+            precioPar = 180;
+            stockDisponible = stockAdizeroEvoSl;
+        }else if (codigoModelo == 5)
+        {
+            precioPar = 220;
+            stockDisponible = stockPrimeSp4;
+        }else if (codigoModelo == 6)
+        {
+            precioPar = 120;
+            stockDisponible = stockCampus;
+        }else if (codigoModelo == 7)
+        {
+            precioPar = 120;
+            stockDisponible = stockFuelcellRebelV5;
+        }else if (codigoModelo == 8)
+        {
+            precioPar = 170;
+            stockDisponible = stockSuperCompPwrX;
+        }else
+        {
+            precioPar = 120;
+            stockDisponible = stockutility1906;
+        }
+
+        //comprobar stock antes de continuar
+        if (stockDisponible == 0)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Lo sentimos " + marcaZapatillas + " " + modeloZapatillas + " no esta disponible.");
+        }else
+        {
+            //vender par o pares dependiendo de cliente
+            int cantidadDePares;
+
+            do
+            {
+                Console.WriteLine("Numeero de pares disponibles: " + stockDisponible);
+                cantidadDePares = int.Parse(Console.ReadLine()!);
+                if (cantidadDePares < 1 || cantidadDePares > stockDisponible)
+                {
+                    Console.WriteLine("ERROR: Elija una cantidad entre 1 y " + stockDisponible);
+                }
+            } while (cantidadDePares < 1 || cantidadDePares > stockDisponible);
+
+            // descuento a aplicar en la compra
+            double descuento = 0;
+            if (cantidadDePares >= 3)
+            {
+                descuento = descuentoGrande;
+            }else if (cantidadDePares == 2)
+            {
+                descuento = descuentoPequeno;
+            }
+
+            double subtotal = precioPar * cantidadDePares;
+            double descuento = subtotal * descuento;
         }
     }
     else if (opcionPrincipal == 2)
