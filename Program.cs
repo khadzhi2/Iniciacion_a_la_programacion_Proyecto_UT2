@@ -90,19 +90,80 @@ do
             if (opcionModeloZapatillas == 1)
             {
                 modeloZapatillas = "Vomero Premium";
+
             }else if (opcionModeloZapatillas == 2)
             {
                 modeloZapatillas = "Maxfly 2";
+
             }else
             {
                 modeloZapatillas = "AirForce 1";
+
             }
         }else if (opcionMarcaZapatillas == 2)
         {
             marcaZapatillas = "Adidas";
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas deseada ---");
+                Console.WriteLine("1. Adizero EVO SL");
+                Console.WriteLine("2. Prime SP 4");
+                Console.WriteLine("3. Campus");
+                Console.Write("Seleccione una marca: ");
+                opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
+
+                if (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3)
+                {
+                Console.WriteLine("Elija una de las opciones disponibles");
+                }
+            } while (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3);
+
+            if (opcionModeloZapatillas == 2)
+            {
+                modeloZapatillas = "Adizero EVO SL";
+
+            }else if (opcionModeloZapatillas == 2)
+            {
+                modeloZapatillas = "Prime SP 4";
+
+            }else
+            {
+                modeloZapatillas = "Campus";
+                
+            }
         }else
         {
             marcaZapatillas = "NewBalance";
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas deseada ---");
+                Console.WriteLine("1. Fuelcell Rebel V5");
+                Console.WriteLine("2. FuelCell SuperComp PWR-X v3");
+                Console.WriteLine("3. 1906 utility");
+                Console.Write("Seleccione una marca: ");
+                opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
+
+                if (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3)
+                {
+                Console.WriteLine("Elija una de las opciones disponibles");
+                }
+            } while (opcionModeloZapatillas < 1 || opcionModeloZapatillas > 3);
+
+            if (opcionModeloZapatillas == 1)
+            {
+                modeloZapatillas = "Fuelcell Rebel V5";
+
+            }else if (opcionModeloZapatillas == 2)
+            {
+                modeloZapatillas = "FuelCell SuperComp PWR-X v3";
+
+            }else
+            {
+                modeloZapatillas = "AirForce 1";
+                
+            }
         }
     }
     else if (opcionPrincipal == 2)
