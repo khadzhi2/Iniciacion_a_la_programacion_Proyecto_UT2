@@ -71,13 +71,15 @@ do
         if (opcionMarcaZapatillas == 1)
         {
             marcaZapatillas = "Nike";
+            Console.WriteLine("Marca Nike seleccionada");
+            Console.WriteLine();
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("--- Elija el Modelo de las Zapatillas deseada ---");
-                Console.WriteLine("1. Vomero Premium");
-                Console.WriteLine("2. Maxfly 2");
-                Console.WriteLine("3. AirForce 1");
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas Nike deseada ---");
+                Console.WriteLine("1. Vomero Plus (180€)");
+                Console.WriteLine("2. Maxfly 2 (220€)");
+                Console.WriteLine("3. AirForce 1 (120€)");
                 Console.Write("Seleccione una marca: ");
                 opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
 
@@ -89,27 +91,29 @@ do
 
             if (opcionModeloZapatillas == 1)
             {
-                modeloZapatillas = "Vomero Premium";
-
+                modeloZapatillas = "Vomero Plus";
+                Console.WriteLine("Nike Vomero Plus seleccionadas");
             }else if (opcionModeloZapatillas == 2)
             {
                 modeloZapatillas = "Maxfly 2";
-
+                Console.WriteLine("Nike Maxfly 2 seleccionadas");
             }else
             {
                 modeloZapatillas = "AirForce 1";
-
+                Console.WriteLine("Nike AirForce 1 seleccionadas");
             }
         }else if (opcionMarcaZapatillas == 2)
         {
             marcaZapatillas = "Adidas";
+            Console.WriteLine("Marca Adidas seleccionada");
+            Console.WriteLine();
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("--- Elija el Modelo de las Zapatillas deseada ---");
-                Console.WriteLine("1. Adizero EVO SL");
-                Console.WriteLine("2. Prime SP 4");
-                Console.WriteLine("3. Campus");
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas Adidas deseada ---");
+                Console.WriteLine("1. Adizero EVO SL (180€)");
+                Console.WriteLine("2. Prime SP 4 (220€)");
+                Console.WriteLine("3. Campus (120€)");
                 Console.Write("Seleccione una marca: ");
                 opcionModeloZapatillas = int.Parse(Console.ReadLine()!);
 
@@ -122,23 +126,25 @@ do
             if (opcionModeloZapatillas == 2)
             {
                 modeloZapatillas = "Adizero EVO SL";
-
+                Console.WriteLine("Adidas Adizero EVO SL seleccionadas");
             }else if (opcionModeloZapatillas == 2)
             {
                 modeloZapatillas = "Prime SP 4";
-
+                Console.WriteLine("Adidas Prime SP 4 seleccionadas");
             }else
             {
                 modeloZapatillas = "Campus";
-                
+                Console.WriteLine("Adidas Campus seleccionadas");
             }
         }else
         {
             marcaZapatillas = "NewBalance";
+            Console.WriteLine("Marca NewBalance seleccionada");
+            Console.WriteLine();
             do
             {
                 Console.WriteLine();
-                Console.WriteLine("--- Elija el Modelo de las Zapatillas deseada ---");
+                Console.WriteLine("--- Elija el Modelo de las Zapatillas NewBalance deseada ---");
                 Console.WriteLine("1. Fuelcell Rebel V5");
                 Console.WriteLine("2. FuelCell SuperComp PWR-X v3");
                 Console.WriteLine("3. 1906 utility");
@@ -154,15 +160,15 @@ do
             if (opcionModeloZapatillas == 1)
             {
                 modeloZapatillas = "Fuelcell Rebel V5";
-
+                Console.WriteLine("NewBalance Fuelcell Rebel V5 selecionadas");
             }else if (opcionModeloZapatillas == 2)
             {
                 modeloZapatillas = "FuelCell SuperComp PWR-X v3";
-
+                Console.WriteLine("NewBalance FuelCell SuperComp PWR-X v3 seleccionadas");
             }else
             {
-                modeloZapatillas = "AirForce 1";
-                
+                modeloZapatillas = "1906 utility";
+                Console.WriteLine("NewBalance 1906 utility seleccionadas");
             }
         }
     }
