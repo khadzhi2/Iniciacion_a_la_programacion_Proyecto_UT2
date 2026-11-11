@@ -2,10 +2,12 @@
 //Alpine&Run: 
 // -------------------------------
 
+using System.ComponentModel;
+
 int ventasHoy = 0;
 int inventarioNuevo = 0;
-decimal dineroGanado = 0;
-decimal dineroGastado = 0;
+double dineroGanado = 0;
+double dineroGastado = 0;
 int paresVendidos = 0;
 
 //Stock de tienda
@@ -260,7 +262,125 @@ do
             }
 
             double subtotal = precioPar * cantidadDePares;
-            double descuento = subtotal * descuento;
+            double importeDescuento = subtotal * descuento;
+            double totalAPagar = subtotal - importeDescuento;
+
+            Console.WriteLine();
+            Console.WriteLine("--- Resumen de la Compra ---");
+            Console.WriteLine("Cliente: " + nombreCliente.Trim());
+            Console.WriteLine("Producto : " + marcaZapatillas + " " + modeloZapatillas);
+            Console.WriteLine("Pares: " + cantidadDePares + " x " + precioPar.ToString("F2") + "€");
+            Console.WriteLine("Descuento: " + importeDescuento.ToString("F2") + "€");
+            Console.WriteLine("Total: " + totalAPagar.ToString("F2") + "€");
+
+            //confirmar compra
+            int opcionConfirmarCompra;
+
+            do
+            {
+                Console.WriteLine("1. Confirmar Compra");
+                Console.WriteLine("2. Cancelar Compra");
+                Console.WriteLine("Seleccione una opcion: ");
+                opcionConfirmarCompra = int.Parse(Console.ReadLine()!);
+
+                if (opcionConfirmarCompra < 1 || opcionConfirmarCompra > 2)
+                {
+                    Console.WriteLine("Elija una de las opciones disponibles");
+                }
+            } while (opcionConfirmarCompra < 1 || opcionConfirmarCompra > 2);
+
+            if (opcionConfirmarCompra == 2)
+            {
+                Console.WriteLine("Compra cancelada");
+            }else
+            {
+                ventasHoy++;
+                paresVendidos += cantidadDePares;
+                dineroGanado += totalAPagar;
+            }
+
+            //disminuir el stock de producto en base a la venta
+            if (codigoModelo == 1)
+            {
+                stockVomeroPlus -= cantidadDePares;
+            }else if (codigoModelo == 2)
+            {
+                stockMaxfly2 -= cantidadDePares;
+            }else if (codigoModelo == 3)
+            {
+                stockAirForce1 -= cantidadDePares;
+            }else if (codigoModelo == 4)
+            {
+                stockAdizeroEvoSl -= cantidadDePares;
+            }else if (codigoModelo == 5)
+            {
+                stockPrimeSp4 -= cantidadDePares;
+            }else if (codigoModelo == 6)
+            {
+                stockCampus -= cantidadDePares;
+            }else if (codigoModelo == 7)
+            {
+                stockFuelcellRebelV5 -= cantidadDePares;
+            }else if (codigoModelo == 8)
+            {
+                stockSuperCompPwrX -= cantidadDePares;
+            }else
+            {
+                stockutility1906 -= cantidadDePares;
+            }
+
+            //ticket de la venta de stock
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("            Ticket Alpine&Run");
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("Numero ticket: " + ventasHoy);
+            Console.WriteLine("Cliente: "+ nombreCliente.Trim());
+            Console.WriteLine("Producto comprado: "+ marcaZapatillas + " " + modeloZapatillas);
+            Console.WriteLine("Par/es comprados: " + cantidadDePares + "x" + precioPar.ToString("F2") + "€");
+            Console.WriteLine("Subtotal: " + subtotal.ToString("F2") + "€");
+            Console.WriteLine("Descuento: " + (descuento * 100).ToString("F0") + "% = " + importeDescuento.ToString("F2") + "€");
+            Console.WriteLine("TOTAL: " + totalAPagar.ToString("F2") + "€");
+            Console.WriteLine();
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("          Gracias por su compra");
+            Console.WriteLine();
+
+            //revisar stock despues de la venta
+            if (codigoModelo == 1)
+            {
+                stockDisponible = stockVomeroPlus;
+            }else if (codigoModelo == 2)
+            {
+                stockDisponible = stockMaxfly2;
+            }else if (codigoModelo == 3)
+            {
+                stockDisponible = stockAirForce1;
+            }else if (codigoModelo == 4)
+            {
+                stockDisponible = stockAdizeroEvoSl;
+            }else if (codigoModelo == 5)
+            {
+                stockDisponible = stockPrimeSp4;
+            }else if (codigoModelo == 6)
+            {
+                stockDisponible = stockCampus;
+            }else if (codigoModelo == 7)
+            {
+                stockDisponible = stockFuelcellRebelV5;
+            }else if (codigoModelo == 8)
+            {
+                stockDisponible = stockSuperCompPwrX;
+            }else
+            {
+                stockDisponible = stockutility1906;
+            }
+
+            if (stockDisponible <= 3)
+            {
+                Console.WriteLine();
+                Console.WriteLine("AVISO: Stock Bajo de: " + marcaZapatillas + " " + modeloZapatillas);
+            }
         }
     }
     else if (opcionPrincipal == 2)
