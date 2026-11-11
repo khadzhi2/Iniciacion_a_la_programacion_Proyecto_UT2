@@ -385,18 +385,132 @@ do
     }
     else if (opcionPrincipal == 2)
     {
+        //consultar inventario
+        Console.WriteLine();
+        Console.WriteLine("--- Inventario ---");
+        Console.WriteLine("Nike");
+        Console.WriteLine("Vomero Plus: " + stockVomeroPlus + "pares");
+        Console.WriteLine("Maxfly 2: " + stockMaxfly2 + "pares");
+        Console.WriteLine("Airforce 1: " + stockAirForce1 + "pares");
+        Console.WriteLine("Adidas");
+        Console.WriteLine("Adizero EVO SL: " + stockAdizeroEvoSl + "pares");
+        Console.WriteLine("Prime SP 4: " + stockPrimeSp4 + "pares");
+        Console.WriteLine("Campus: " + stockCampus + "pares");
+        Console.WriteLine("NewBalence");
+        Console.WriteLine("Fuelcell Rebel V5: " + stockFuelcellRebelV5 + "pares");
+        Console.WriteLine("Fuelcell SuperComp PWR-X v3: " + stockSuperCompPwrX + "pares");
+        Console.WriteLine("1906 Utility: " + stockutility1906 + "pares");
+
+        //total de pares
+        int totalParesEnStock = stockVomeroPlus + stockMaxfly2 + stockAirForce1 + stockAdizeroEvoSl + stockPrimeSp4 + stockCampus + stockFuelcellRebelV5 + stockSuperCompPwrX + stockutility1906;
         
+        //valor total stock
+        int valorTotalParesEnStock = stockVomeroPlus * 180 + stockMaxfly2 * 220 + stockAirForce1 * 120 + stockAdizeroEvoSl * 180 + stockPrimeSp4 * 220 + stockCampus * 120 + stockFuelcellRebelV5 * 120 + stockSuperCompPwrX * 170 + stockutility1906 * 120;
+
+        //sacar por pantalla
+        Console.WriteLine();
+        Console.WriteLine("Total de pares en stock: " + totalParesEnStock);
+        Console.WriteLine("Valor total del stock: " + valorTotalParesEnStock.ToString("F2") + "€");
     }
     else if (opcionPrincipal == 3)
     {
-        
+        //consultar ventas del dia
+        Console.WriteLine();
+        Console.WriteLine("--- Ventas del Dia ---");
+
+        //hacer que no se tenga que dividir entre 0 para que no de error
+        if (ventasHoy == 0)
+        {
+            Console.WriteLine("Hoy no ha habido ventas por el momento");
+        }else
+        {
+            Console.WriteLine("Ventas: " + ventasHoy);
+            Console.WriteLine("Pares vendidos: " + paresVendidos);
+            Console.WriteLine();
+            Console.WriteLine("Dinero Ganado: " + dineroGanado.ToString("F2") + "€");
+            Console.WriteLine("Dinero Gastado: " + dineroGastado.ToString("F2") + "€");
+        }
+    }
+    else if (opcionPrincipal == 4)
+    {
+        //reponer inventario
+        Console.WriteLine();
+        Console.WriteLine("--- Reponer Inventario ---");
+        Console.WriteLine("1. Nike Vomero Plus (stock: " + stockVomeroPlus + ")");
+        Console.WriteLine("2. Nike Maxfly 2 (stock:" + stockMaxfly2 + ")");
+        Console.WriteLine("3. Nike AirForce 1 (stock" + stockAirForce1 + ")");
+        Console.WriteLine("4. Adidas Adizero EVO SL (stock: 0 " + stockAdizeroEvoSl + ")");
+        Console.WriteLine("5. Adidas Prime SP 4 (stock: " + stockPrimeSp4 + ")");
+        Console.WriteLine("6. Adidas Campus (stock: " + stockCampus + ")");
+        Console.WriteLine("7. NewBalance Fuelcell Rebel V5 (stock: " + stockFuelcellRebelV5 + ")");
+        Console.WriteLine("8. NewBalance Fuelcell SuperComp PWR-X v3 (stock: " + stockSuperCompPwrX + ")");
+        Console.WriteLine("9. NewBalance 1906 utility (stock: " + stockutility1906 + ")");
+
+        int zapatillasAReponer;
+
+        do
+        {
+            Console.WriteLine("Zapatillas a reponer 1 a 9:");
+            zapatillasAReponer = int.Parse(Console.ReadLine()!);
+
+            if (zapatillasAReponer < 1 || zapatillasAReponer >9)
+            {
+                Console.WriteLine("Elija una de las opciones");
+            }
+        } while (zapatillasAReponer < 1 || zapatillasAReponer > 9);
+
+        double precioVentaZapatillas = 0;
+
+        if (zapatillasAReponer == 1)
+        {
+            precioVentaZapatillas = 180;
+            stockVomeroPlus += zapatillasAReponer;
+        }else if (zapatillasAReponer == 2)
+        {
+            precioVentaZapatillas = 220;
+            stockMaxfly2 += zapatillasAReponer;
+        }else if (zapatillasAReponer == 3)
+        {
+            precioVentaZapatillas = 120;
+            stockAirForce1 += zapatillasAReponer;
+        }else if (zapatillasAReponer == 4)
+        {
+            precioVentaZapatillas = 180;
+            stockAdizeroEvoSl += zapatillasAReponer;
+        }else if (zapatillasAReponer == 5)
+        {
+            precioVentaZapatillas = 220;
+            stockPrimeSp4 += zapatillasAReponer;
+        }else if (zapatillasAReponer == 6)
+        {
+            precioVentaZapatillas = 120;
+            stockCampus += zapatillasAReponer;
+        }else if (zapatillasAReponer == 7)
+        {
+            precioVentaZapatillas = 120;
+            stockFuelcellRebelV5 += zapatillasAReponer;
+        }else if (zapatillasAReponer == 8)
+        {
+            precioVentaZapatillas = 170;
+            stockSuperCompPwrX += zapatillasAReponer;
+        }else
+        {
+            precioVentaZapatillas = 120;
+            stockutility1906 += zapatillasAReponer;
+        }
+
+        inventarioNuevo += zapatillasAReponer;
+        Console.WriteLine();
+        Console.WriteLine("Reposicion: " + zapatillasAReponer + " pares");
     }
     else if (opcionPrincipal == 0)
     {
-        
+        //salir del programa
+        Console.WriteLine();
+        Console.WriteLine("Cerrando Alpine&Run. Balance a final de dia: " + (dineroGanado - dineroGastado).ToString("F2") + "€");
     }
     else
     {
-        Console.WriteLine("Opcion incorrecta. seleccione 1, 2, 3 o 0");
+        Console.WriteLine("Opcion incorrecta. seleccione 1, 2, 3, 4 o 0");
     }
 } while (opcionPrincipal != 0);
